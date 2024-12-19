@@ -1,21 +1,22 @@
 const squaresPerSide = 48;
+const squareSize = 16; //in pixels
+const rowLength = squaresPerSide * squareSize; //in pixels
 const container = document.querySelector('div');
 
-const fixedWidth = "16px";
-const fixedHeight = "16px";
+container.style.width = `${rowLength}px`;
 
 for(let row = 1; row <= squaresPerSide; row++) {
     const rowDiv = document.createElement('div');
     rowDiv.style.display = "flex";
-
+    
     for(let column = 1; column <= squaresPerSide; column++) {
         const div = document.createElement('div');
-        div.style.width = fixedWidth;
-        div.style.height = fixedHeight;
-        randomizeBackgroundColor(div);
+        div.style.width = `${squareSize}px`;
+        div.style.height = `${squareSize}px`;
+        div.style.backgroundColor = 'white';
         rowDiv.appendChild(div);
     }
-       
+
     container.appendChild(rowDiv);
 }
 
@@ -31,3 +32,7 @@ function randomizeBackgroundColor(element) {
 function randomIntFromRange(num1, num2) {
     return Math.floor(Math.random() * 256);
 }
+
+container.addEventListener('mouseover', function(event) {
+    randomizeBackgroundColor(event.target);
+});
