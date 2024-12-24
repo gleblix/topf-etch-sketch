@@ -2,7 +2,6 @@ const squaresPerSide = 48;
 const squareSize = 16; //in pixels
 const rowLength = squaresPerSide * squareSize; //in pixels
 const container = document.querySelector('div');
-
 container.style.width = `${rowLength}px`;
 
 for(let row = 1; row <= squaresPerSide; row++) {
@@ -13,7 +12,8 @@ for(let row = 1; row <= squaresPerSide; row++) {
         const div = document.createElement('div');
         div.style.width = `${squareSize}px`;
         div.style.height = `${squareSize}px`;
-        div.style.backgroundColor = 'white';
+        div.style.backgroundColor = 'black';
+        div.style.opacity = 0.0;
         rowDiv.appendChild(div);
     }
 
@@ -33,6 +33,16 @@ function randomIntFromRange(num1, num2) {
     return Math.floor(Math.random() * 256);
 }
 
+function increaseOpacity(element) {
+    element.style.opacity = Math.min(parseFloat(element.style.opacity) + 0.1, 1);
+}
+    
+
+
 container.addEventListener('mouseover', function(event) {
-    randomizeBackgroundColor(event.target);
+    //randomizeBackgroundColor(event.target);
+    increaseOpacity(event.target);
 });
+
+// next item - create spacebar functionality to avoid changing opacity
+// following item - create another key to be an eraser function
